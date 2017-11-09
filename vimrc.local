@@ -1,0 +1,62 @@
+" automatically rebalance windows on resize
+autocmd VimResized * :wincmd =
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+colorscheme jellybeans
+
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+
+" Remove whitespace at end of lines
+autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php :%s/\s\+$//e
+
+" Display relative line numbers 
+set number
+set numberwidth=5
+set relativenumber
+
+" Move between wrapped lines
+nmap j gj
+nmap k gk
+
+" Source open file, quickly reload vimrc etc
+nnoremap <leader>sop :source %<cr>
+
+nnoremap <leader>; :
+
+" Swap 0 and ^. I tend to want to jump to the first non-whitespace character
+" so make that the easier one to do.
+nnoremap 0 ^
+nnoremap ^ 0
+
+" Search and replace settings
+" ---------------------------
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+nnoremap <leader>sub :%s///g<left><left>
+vnoremap <leader>sub :s///g<left><left>
+
+" Folding
+" -------
+
+"Enable indent folding
+set foldenable
+set foldmethod=indent
+set foldlevel=999
+
+" So I never use s, and I want a single key map to toggle folds, thus
+" lower s = toggle <=> upper S = toggle recursive
+nnoremap <leader>ff za
+nnoremap <leader>FF zA
+
+"Maps for folding, unfolding all
+nnoremap <LEADER>fu zM<CR>
+nnoremap <LEADER>uf zR<CR>
+
+" vim:ft=vim

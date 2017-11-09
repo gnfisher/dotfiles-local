@@ -1,0 +1,2 @@
+Plug 'nanotech/jellybeans.vim'
+Plug 'christoomey/vim-tmux-navigator'
