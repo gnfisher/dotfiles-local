@@ -5,6 +5,21 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
+" Use C-Space to Esc any mode
+nnoremap <C-Space> <Esc>:noh<CR>
+vnoremap <C-Space> <Esc>gV
+onoremap <C-Space> <Esc>
+cnoremap <C-Space> <C-c>
+inoremap <C-Space> <Esc>
+" Terminal sees <C-@> as <C-space>
+nnoremap <C-@> <Esc>:noh<CR>
+vnoremap <C-@> <Esc>gV
+onoremap <C-@> <Esc>
+cnoremap <C-@> <C-c>
+inoremap <C-@> <Esc>
+
+
+" Appearance
 colorscheme jellybeans
 
 let g:netrw_liststyle = 3
@@ -58,5 +73,15 @@ nnoremap <leader>FF zA
 "Maps for folding, unfolding all
 nnoremap <LEADER>fu zM<CR>
 nnoremap <LEADER>uf zR<CR>
+
+nnoremap <leader>vo :VtrOpenRunner<cr>
+nnoremap <leader>va :VtrAttachToPane<cr>
+nnoremap <leader>fr :VtrFocusRunner<cr>
+
+nnoremap <leader>q :VtrSendCommandToRunner q<cr>
+
+let g:test#strategy = "vtr"
+let g:test#runner_commands = ["RSpec"]
+
 
 " vim:ft=vim
