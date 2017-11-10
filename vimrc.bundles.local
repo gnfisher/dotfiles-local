@@ -1,3 +1,5 @@
 Plug 'nanotech/jellybeans.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
+Plug 'ervandew/supertab'
+

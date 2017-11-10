@@ -22,7 +22,6 @@ inoremap <C-@> <Esc>
 " Appearance
 colorscheme jellybeans
 
-let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
 " Remove whitespace at end of lines
@@ -83,5 +82,13 @@ nnoremap <leader>q :VtrSendCommandToRunner q<cr>
 let g:test#strategy = "vtr"
 let g:test#runner_commands = ["RSpec"]
 
+" Lint erb correctly
+call ale#linter#Define('eruby', {
+ \   'name': 'erubylint',
+ \   'executable': 'erb',
+ \   'output_stream': 'stderr',
+ \   'command': "ruby -rerb -e \"puts ERB.new(File.read(%t, encoding: 'BINARY').gsub('<%=','<%'), nil, '-').src\" | ruby -c",
+ \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
+ \})
 
 " vim:ft=vim
