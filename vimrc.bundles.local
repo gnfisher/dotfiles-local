@@ -1,5 +1,5 @@
-Plug 'nanotech/jellybeans.vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'ervandew/supertab'
-
+Plug 'nanotech/jellybeans.vim'
