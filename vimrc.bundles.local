@@ -1,5 +1,7 @@
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
+Plug 'digitaltoad/vim-pug'
 Plug 'ervandew/supertab'
+Plug 'lifepillar/vim-solarized8'
 Plug 'nanotech/jellybeans.vim'

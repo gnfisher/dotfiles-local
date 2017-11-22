@@ -21,8 +21,8 @@ inoremap <C-@> <Esc>
 
 " Appearance
 syntax enable
-set background=light
-colorscheme solarized 
+set background=dark
+colorscheme solarized
 
 let g:netrw_banner = 0
 
@@ -37,6 +37,9 @@ set relativenumber
 " Move between wrapped lines
 nmap j gj
 nmap k gk
+
+" Enable matchit for better navigating
+runtime macros/matchit.vim
 
 " Source open file, quickly reload vimrc etc
 nnoremap <leader>sop :source %<cr>
