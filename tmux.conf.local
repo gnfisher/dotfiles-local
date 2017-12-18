@@ -1,4 +1,6 @@
+# improve colors
 set-option -g default-terminal "xterm-256color"
+
 set-window-option -g xterm-keys on
 set-option -g status-keys "emacs"
 
@@ -38,3 +40,10 @@ bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
 bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
 bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
 bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+
+# status bar
+set -g status-left-length 40
+set -g status-fg black
+set -g status-bg green
+set -g status-left '[#S] '
+set -g status-right "#{?pane_synchronized,--SYNCED--,} #(is-online) #(battery -t -g black) #(date '+%a, %b %d - %I:%M') "

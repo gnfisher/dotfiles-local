@@ -21,8 +21,8 @@ inoremap <C-@> <Esc>
 
 " Appearance
 syntax enable
-set background=dark
-colorscheme solarized
+" set background=light
+colorscheme jellybeans
 
 let g:netrw_banner = 0
 
@@ -40,6 +40,11 @@ nmap k gk
 
 " Enable matchit for better navigating
 runtime macros/matchit.vim
+
+" Enable this for textobj-rubyblock
+if has("autocmd")
+  filetype indent plugin on
+endif
 
 " Source open file, quickly reload vimrc etc
 nnoremap <leader>sop :source %<cr>
