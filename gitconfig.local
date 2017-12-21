@@ -4,5 +4,10 @@
 [alias]
   l = log --pretty=colored
   unstage = reset 
+  com = checkout
+  co = checkout
+  cob = checkout -b
+  ffm = merge --ff-only
+  ri = rebase -i
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
