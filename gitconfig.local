@@ -3,5 +3,6 @@
   email = me@gnfisher.com
 [alias]
   l = log --pretty=colored
+  unstage = reset 
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
