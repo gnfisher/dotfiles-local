@@ -1,5 +1,7 @@
 map <leader>bb :!bundle install<cr>
 
+set tags=./tags,tags,./.git/tags;$HOME
+
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
 
@@ -102,5 +104,8 @@ call ale#linter#Define('eruby', {
  \   'command': "ruby -rerb -e \"puts ERB.new(File.read(%t, encoding: 'BINARY').gsub('<%=','<%'), nil, '-').src\" | ruby -c",
  \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
  \})
+
+" My leader space <3
+nnoremap <leader>got <c-w>gf
 
 " vim:ft=vim

@@ -1,4 +1,5 @@
 # export to path
+export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=~/.npm-global/bin:$PATH
 
 # Path to your oh-my-zsh configuration.
@@ -9,3 +10,7 @@ export ZSH_THEME="gnf" # Zsh theme, loaded from ~/.oh-my-zsh/themese. Set to 'ra
 source $ZSH/oh-my-zsh.sh
 
 alias dropbox="cd ~/Dropbox/"
+
+alias tas="tmux attach-session -t"
+alias ra="bin/rails"
+alias br="bin/rake"
