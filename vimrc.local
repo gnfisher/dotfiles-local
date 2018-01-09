@@ -107,5 +107,6 @@ call ale#linter#Define('eruby', {
 
 " My leader space <3
 nnoremap <leader>got <c-w>gf
+nnoremap <leader>c :cclose<cr>
 
 " vim:ft=vim
