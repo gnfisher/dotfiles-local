@@ -25,8 +25,8 @@ inoremap <C-@> <Esc>
 
 " Appearance
 syntax enable
-" set background=light
-colorscheme jellybeans
+set background=light
+colorscheme solarized8
 
 let g:netrw_banner = 0
 
@@ -108,5 +108,8 @@ call ale#linter#Define('eruby', {
 " My leader space <3
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
+
+" Run the current open buffer as an elixir script.
+nnoremap <leader>re :execute ":VtrSendCommandToRunner elixir " . bufname("%")<cr>
 
 " vim:ft=vim
