@@ -24,9 +24,16 @@ inoremap <C-@> <Esc>
 
 
 " Appearance
-syntax enable
-set background=light
-colorscheme solarized8
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+set background=dark
+colorscheme jellybeans
 
 let g:netrw_banner = 0
 
@@ -80,12 +87,14 @@ set foldlevel=999
 
 " So I never use s, and I want a single key map to toggle folds, thus
 " lower s = toggle <=> upper S = toggle recursive
-nnoremap <leader>ff za
-nnoremap <leader>FF zA
+" nnoremap <leader>ff za
+" nnoremap <leader>FF zA
+nnoremap s za
+nnoremap S zA
 
 "Maps for folding, unfolding all
-nnoremap <LEADER>fu zM<CR>
-nnoremap <LEADER>uf zR<CR>
+nnoremap <leader>fu zM<cr>
+nnoremap <leader>uf zR<cr>
 
 nnoremap <leader>vo :VtrOpenRunner<cr>
 nnoremap <leader>va :VtrAttachToPane<cr>
@@ -108,6 +117,10 @@ call ale#linter#Define('eruby', {
 " My leader space <3
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
+map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
+map <leader>sc :sp db/schema.rb<cr>
+map <leader>d o<cr>binding.pry<esc>:w<cr>
+map <leader>n :vsp .project_notes<cr>
 
 " Run the current open buffer as an elixir script.
 nnoremap <leader>re :execute ":VtrSendCommandToRunner elixir " . bufname("%")<cr>
