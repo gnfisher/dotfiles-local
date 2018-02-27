@@ -119,8 +119,10 @@ nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
 map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 map <leader>sc :sp db/schema.rb<cr>
-map <leader>d o<cr>binding.pry<esc>:w<cr>
+map <leader>b o<cr>binding.pry<esc>:w<cr>
 map <leader>n :vsp .project_notes<cr>
+map <leader>d Lzt<cr>
+map <leader>u HzbH<cr>
 
 " Run the current open buffer as an elixir script.
 nnoremap <leader>re :execute ":VtrSendCommandToRunner elixir " . bufname("%")<cr>
