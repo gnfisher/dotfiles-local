@@ -96,14 +96,8 @@ nnoremap S zA
 nnoremap <leader>fu zM<cr>
 nnoremap <leader>uf zR<cr>
 
-nnoremap <leader>vo :VtrOpenRunner<cr>
-nnoremap <leader>va :VtrAttachToPane<cr>
-nnoremap <leader>fr :VtrFocusRunner<cr>
-
-nnoremap <leader>q :VtrSendCommandToRunner q<cr>
-
-let g:test#strategy = "vtr"
-let g:test#runner_commands = ["RSpec"]
+" let g:test#strategy = "vtr"
+" let g:test#runner_commands = ["RSpec"]
 
 " Lint erb correctly
 call ale#linter#Define('eruby', {
@@ -114,7 +108,7 @@ call ale#linter#Define('eruby', {
  \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
  \})
 
-" My leader space <3
+" My leader space
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
 map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
