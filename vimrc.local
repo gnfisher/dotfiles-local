@@ -1,5 +1,5 @@
 map <leader>bb :!bundle install<cr>
-
+set guifont=Monaco\ 11
 set tags=./tags,tags,./.git/tags;$HOME
 
 " automatically rebalance windows on resize
@@ -33,7 +33,7 @@ if (empty($TMUX))
   endif
 endif
 set background=dark
-colorscheme jellybeans
+colorscheme dracula 
 
 let g:netrw_banner = 0
 
@@ -117,8 +117,5 @@ map <leader>b o<cr>binding.pry<esc>:w<cr>
 map <leader>n :vsp .project_notes<cr>
 map <leader>d Lzt<cr>
 map <leader>u HzbH<cr>
-
-" Run the current open buffer as an elixir script.
-nnoremap <leader>re :execute ":VtrSendCommandToRunner elixir " . bufname("%")<cr>
 
 " vim:ft=vim
