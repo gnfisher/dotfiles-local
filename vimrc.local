@@ -22,18 +22,7 @@ onoremap <C-@> <Esc>
 cnoremap <C-@> <C-c>
 inoremap <C-@> <Esc>
 
-
-" Appearance
-if (empty($TMUX))
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-set background=dark
-colorscheme dracula 
+colorscheme jellybeans
 
 let g:netrw_banner = 0
 
