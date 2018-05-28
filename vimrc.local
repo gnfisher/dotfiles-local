@@ -1,6 +1,8 @@
+set t_Co=256
 map <leader>bb :!bundle install<cr>
 set guifont=Monaco\ 11
 set tags=./tags,tags,./.git/tags;$HOME
+set clipboard=unnamed
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -21,8 +23,6 @@ vnoremap <C-@> <Esc>gV
 onoremap <C-@> <Esc>
 cnoremap <C-@> <C-c>
 inoremap <C-@> <Esc>
-
-colorscheme jellybeans
 
 let g:netrw_banner = 0
 
@@ -85,7 +85,9 @@ nnoremap S zA
 nnoremap <leader>fu zM<cr>
 nnoremap <leader>uf zR<cr>
 
-" let g:test#strategy = "vtr"
+" Autoindent new lines with C-Return
+imap <C-Return> <CR><CR><C-o>k<Tab>
+let g:test#strategy = "dispatch"
 " let g:test#runner_commands = ["RSpec"]
 
 " Lint erb correctly
@@ -97,6 +99,22 @@ call ale#linter#Define('eruby', {
  \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
  \})
 
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 " My leader space
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
@@ -106,5 +124,9 @@ map <leader>b o<cr>binding.pry<esc>:w<cr>
 map <leader>n :vsp .project_notes<cr>
 map <leader>d Lzt<cr>
 map <leader>u HzbH<cr>
+
+set background=light
+colorscheme one
+" colorscheme jellybeans
 
 " vim:ft=vim
