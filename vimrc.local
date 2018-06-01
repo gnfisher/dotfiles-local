@@ -11,19 +11,6 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
-" Use C-Space to Esc any mode
-nnoremap <C-Space> <Esc>:noh<CR>
-vnoremap <C-Space> <Esc>gV
-onoremap <C-Space> <Esc>
-cnoremap <C-Space> <C-c>
-inoremap <C-Space> <Esc>
-" Terminal sees <C-@> as <C-space>
-nnoremap <C-@> <Esc>:noh<CR>
-vnoremap <C-@> <Esc>gV
-onoremap <C-@> <Esc>
-cnoremap <C-@> <C-c>
-inoremap <C-@> <Esc>
-
 let g:netrw_banner = 0
 
 " Remove whitespace at end of lines
@@ -66,6 +53,20 @@ set smartcase
 nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
 
+nnoremap \ :CtrlSF<SPACE>
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+let g:ctrlsf_mapping = {
+    \ "next": "n",
+    \ "prev": "N",
+    \ }
+
 " Folding
 " -------
 
@@ -105,9 +106,17 @@ let g:user_emmet_settings = {
     \  },
   \}
 
+set completeopt=preview,menuone
+
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_auto_trigger = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
@@ -115,12 +124,18 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutFastWrap = "<c-e>"
+let g:AutoPairsShortcutBackInsert= "<c-b>"
+
+" bind K to grep word under cursor
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " My leader space
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
 map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 map <leader>sc :sp db/schema.rb<cr>
-map <leader>b o<cr>binding.pry<esc>:w<cr>
 map <leader>n :vsp .project_notes<cr>
 map <leader>d Lzt<cr>
 map <leader>u HzbH<cr>
@@ -128,5 +143,18 @@ map <leader>u HzbH<cr>
 set background=light
 colorscheme one
 " colorscheme jellybeans
+
+" Use C-Space to Esc any mode
+nnoremap <C-Space> <Esc>:noh<CR>
+vnoremap <C-Space> <Esc>gV
+onoremap <C-Space> <Esc>
+cnoremap <C-Space> <C-c>
+inoremap <C-Space> <Esc>
+" Terminal sees <C-@> as <C-space>
+nnoremap <C-@> <Esc>:noh<CR>
+vnoremap <C-@> <Esc>gV
+onoremap <C-@> <Esc>
+cnoremap <C-@> <C-c>
+inoremap <C-@> <Esc>
 
 " vim:ft=vim

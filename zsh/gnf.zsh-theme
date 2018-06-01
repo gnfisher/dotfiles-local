@@ -29,7 +29,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_AHEAD=" %{$RED%}(!)"
 
 # Format for git_prompt_long_sha() and git_prompt_short_sha()
-ZSH_THEME_GIT_PROMPT_SHA_BEFORE=" %{$WHITE%}[%{$YELLOW%}"
+ZSH_THEME_GIT_PROMPT_SHA_BEFORE=" %{$WHITE%}[%{$BLUE%}"
 ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$WHITE%}]"
 
 # Only display host if this is via SSH
@@ -40,7 +40,7 @@ else
 fi
 
 PROMPT='
-%{$GREEN_BOLD%}$sshing%{$WHITE%} %{$YELLOW%}${PWD/#$HOME/~}%{$RESET_COLOR%} \
-%{$GREEN%}$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$(git_prompt_short_sha)$(parse_git_dirty)%{$RESET_COLOR%}
+%{$BLUE%}$sshing%{$WHITE%} %{$BLUE%}${PWD/#$HOME/~}%{$RESET_COLOR%} \
+%{$BLUE_BOLD%}$(git rev-parse --abbrev-ref HEAD 2> /dev/null)$(git_prompt_short_sha)$(parse_git_dirty)%{$RESET_COLOR%}
 %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 # RPROMPT='[%{$GREEN%}$(ruby --version | cut -d " " -f 2)%{$WHITE%}]'
