@@ -7,7 +7,8 @@ export PATH="$PATH:/usr/lib"
 export ZSH=$HOME/.zsh
 plugins=(zsh-syntax-highlighting git)
 export DISABLE_AUTO_UPDATE="true" # Don't let oh-my-zsh auto update
-export ZSH_THEME="gnf" # Zsh theme, loaded from ~/.oh-my-zsh/themese. Set to 'random' for fun
+# export ZSH_THEME="juanghurtado" # Zsh theme, loaded from ~/.oh-my-zsh/themese. Set to 'random' for fun
+export ZSH_THEME="gnf"
 source $ZSH/oh-my-zsh.sh
 
 alias dropbox="cd ~/Dropbox/"
