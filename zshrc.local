@@ -3,14 +3,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=~/.npm-global/bin:$PATH
 export PATH="$PATH:/usr/lib"
 
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.zsh
-plugins=(zsh-syntax-highlighting git)
-export DISABLE_AUTO_UPDATE="true" # Don't let oh-my-zsh auto update
-# export ZSH_THEME="juanghurtado" # Zsh theme, loaded from ~/.oh-my-zsh/themese. Set to 'random' for fun
-export ZSH_THEME="gnf"
-source $ZSH/oh-my-zsh.sh
-
 alias dropbox="cd ~/Dropbox/"
 
 alias vim="/usr/local/Cellar/vim/8.0.1750/bin/vim"

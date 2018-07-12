@@ -1,9 +1,13 @@
-set termguicolors
-let g:solarized_italic = 1
-map <leader>bb :!bundle install<cr>
-set guifont=Monaco:h13
+set encoding=utf-8
 set tags=./tags,tags,./.git/tags;$HOME
 set clipboard=unnamed
+set mouse=a
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set guifont=Monaco:h12
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -12,19 +16,18 @@ autocmd VimResized * :wincmd =
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
+" simplify netrw
 let g:netrw_banner = 0
-
-" Remove whitespace at end of lines
-autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php :%s/\s\+$//e
 
 " Display relative line numbers 
 set number
 set numberwidth=5
 set relativenumber
 
-" Move between wrapped lines
-nmap j gj
-nmap k gk
+" enable indent folding
+set foldenable
+set foldmethod=indent
+set foldlevel=999
 
 " Enable matchit for better navigating
 runtime macros/matchit.vim
@@ -34,27 +37,46 @@ if has("autocmd")
   filetype indent plugin on
 endif
 
-" Source open file, quickly reload vimrc etc
-nnoremap <leader>sop :source %<cr>
+" Remove whitespace at end of lines
+autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php :%s/\s\+$//e
 
+" use C-Space to Esc any mode
+nnoremap <C-Space> <Esc>:noh<CR>
+vnoremap <C-Space> <Esc>gV
+onoremap <C-Space> <Esc>
+cnoremap <C-Space> <C-c>
+inoremap <C-Space> <Esc>
+" terminal sees <C-@> as <C-space>
+nnoremap <C-@> <Esc>:noh<CR>
+vnoremap <C-@> <Esc>gV
+onoremap <C-@> <Esc>
+cnoremap <C-@> <C-c>
+inoremap <C-@> <Esc>
+
+" move highlighted line up or down using option + hjkl
+nnoremap ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
+
+" convenience
 nnoremap <leader>; :
 
-" Swap 0 and ^. I tend to want to jump to the first non-whitespace character
+" move between wrapped lines
+nmap j gj
+nmap k gk
+
+" swap 0 and ^. I tend to want to jump to the first non-whitespace character
 " so make that the easier one to do.
 nnoremap 0 ^
 nnoremap ^ 0
 
-" Search and replace settings
-" ---------------------------
-
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-nnoremap <leader>sub :%s///g<left><left><left>
-vnoremap <leader>sub :s///g<left><left><left>
+" ctrl+r to replace highlighted text in entire document
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
+" setup CtrlSF for searching in project
 nnoremap \ :CtrlSF<SPACE>
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -69,30 +91,18 @@ let g:ctrlsf_mapping = {
     \ "prev": "N",
     \ }
 
-" Folding
-" -------
-
-"Enable indent folding
-set foldenable
-set foldmethod=indent
-set foldlevel=999
-
-" So I never use s, and I want a single key map to toggle folds, thus
-" lower s = toggle <=> upper S = toggle recursive
-" nnoremap <leader>ff za
-" nnoremap <leader>FF zA
+" s toggles folds, S toggles folds recursively
 nnoremap s za
 nnoremap S zA
 
-"Maps for folding, unfolding all
+" [f]old [u]p, [u]n[f]old
 nnoremap <leader>fu zM<cr>
 nnoremap <leader>uf zR<cr>
 
-" Autoindent new lines with C-Return
+" autoindent new lines with C-Return
 imap <C-Return> <CR><CR><C-o>k<Tab>
-let g:test#strategy = "dispatch"
-" let g:test#runner_commands = ["RSpec"]
 
+let g:test#strategy = "dispatch"
 
 " Lint erb correctly
 call ale#linter#Define('eruby', {
@@ -103,68 +113,15 @@ call ale#linter#Define('eruby', {
  \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
  \})
 
-let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-  \}
-let g:jsx_ext_required = 0
-
-set completeopt=preview,menuone
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_auto_trigger = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutFastWrap = "<c-e>"
-let g:AutoPairsShortcutBackInsert= "<c-b>"
-
-" bind K to grep word under cursor
-" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" My leader space
+" leader space
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
 map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 map <leader>sc :sp db/schema.rb<cr>
-map <leader>n :vsp .project_notes<cr>
+map <leader>n :tabe .project_notes<cr>
+
+" Scrolling mods I'm not in love with yet
 map <leader>d Lzt<cr>
 map <leader>u HzbH<cr>
 
-set background=dark
-colorscheme solarized8_high
-" colorscheme jellybeans
-
-" Use C-Space to Esc any mode
-nnoremap <C-Space> <Esc>:noh<CR>
-vnoremap <C-Space> <Esc>gV
-onoremap <C-Space> <Esc>
-cnoremap <C-Space> <C-c>
-inoremap <C-Space> <Esc>
-" Terminal sees <C-@> as <C-space>
-nnoremap <C-@> <Esc>:noh<CR>
-vnoremap <C-@> <Esc>gV
-onoremap <C-@> <Esc>
-cnoremap <C-@> <C-c>
-inoremap <C-@> <Esc>
-
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
-vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv
 " vim:ft=vim
