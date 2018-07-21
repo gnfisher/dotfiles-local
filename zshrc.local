@@ -2,6 +2,14 @@
 export PATH=~/.npm-global/bin:$PATH
 export PATH="$PATH:/usr/lib"
 
+# zsh completions (brew installed)
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# Allow exported PS1 variable to override default prompt.
+if ! env | grep -q '^PS1='; then
+  PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%} %# '
+fi
+
 alias vim="/usr/local/Cellar/vim/8.0.1750/bin/vim"
 alias tas="tmux -2 attach-session -t"
 alias rs="bin/rails"
