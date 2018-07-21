@@ -8,6 +8,8 @@ set ignorecase
 set smartcase
 set guifont=Monaco:h12
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+hi StatusLine ctermbg=29 ctermfg=white
+colorscheme jellybeans
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -75,6 +77,9 @@ nnoremap ^ 0
 
 " ctrl+r to replace highlighted text in entire document
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+
+" CtrlP fuzzy buffer
+nnoremap ; :CtrlPBuffer<CR>
 
 " setup CtrlSF for searching in project
 nnoremap \ :CtrlSF<SPACE>
