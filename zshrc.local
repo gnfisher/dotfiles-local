@@ -7,7 +7,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Allow exported PS1 variable to override default prompt.
 if ! env | grep -q '^PS1='; then
-  PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%} %# '
+  PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg[green]%}%c%{$reset_color%} %# '
 fi
 
 alias vim="/usr/local/Cellar/vim/8.0.1750/bin/vim"

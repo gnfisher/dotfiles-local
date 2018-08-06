@@ -6,10 +6,13 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set guifont=Monaco:h12
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 hi StatusLine ctermbg=29 ctermfg=white
-colorscheme jellybeans
+
+if has("gui_running")
+  set guifont=Monaco:h12
+  " colorscheme monokai
+endif
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -117,6 +120,7 @@ call ale#linter#Define('eruby', {
  \   'command': "ruby -rerb -e \"puts ERB.new(File.read(%t, encoding: 'BINARY').gsub('<%=','<%'), nil, '-').src\" | ruby -c",
  \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
  \})
+let g:ale_javascript_eslint_use_global = 1
 
 " leader space
 nnoremap <leader>got <c-w>gf
