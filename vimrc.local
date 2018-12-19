@@ -1,3 +1,4 @@
+" set termguicolors
 set encoding=utf-8
 set tags=./tags,tags,./.git/tags;$HOME
 set clipboard=unnamed
@@ -9,21 +10,37 @@ set smartcase
 set noeb vb t_vb=
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 hi StatusLine ctermbg=29 ctermfg=white
-let g:netrw_liststyle = 3
+let g:airline_theme='solarized'
 
-set background=dark
-colorscheme lucius
-let g:lucius_high_contrast_bg = 1
-let g:lucius_use_bold = 1
+" Cursor Styles
+let &t_SI.="\e[5 q"
+let &t_SR.="\e[4 q"
+let &t_EI.="\e[1 q"
 
+" Gui vs Terminal
 if has("gui_running")
   set vb t_vb=
   set linespace=3
-  set guifont=Fira\ Code\ Light:h12
-  " set guifont=Monaco:h12
-  set background=dark
-  colorscheme one
+  set guifont=SF\ Mono\ Light:h13
+  set background=light
+  colorscheme solarized
+  " let g:one_allow_italics = 1
+  highlight ColorColumn ctermbg=0 guibg=DarkGray
+else
+  set background=light
+  colorscheme solarized
+  " let g:one_allow_italics = 1
+  " highlight ColorColumn ctermbg=0 guibg=DarkGray
 endif
+
+" Lets try nerdtree again
+" autocmd vimenter * NERDTree
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" map <leader>e :NERDTreeFind<cr>
+" map <C-n> :NERDTreeToggle<CR>
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -139,9 +156,9 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint']
 \}
-let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_eslint_use_global = 1
 
-let g:ctrlp_match_window = 'top,min:1,max:5,results:10'
+" let g:ctrlp_match_window = 'top,min:1,max:5,results:10'
 
 " leader space
 nnoremap <leader>got <c-w>gf
@@ -150,15 +167,13 @@ map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 map <leader>sc :sp db/schema.rb<cr>
 map <leader>n :tabe .project_notes<cr>
 
-" Scrolling mods I'm not in love with yet
-map <leader>d Lzt<cr>
-map <leader>u HzbH<cr>
-
 " Start autocompletion after 4 chars
 let g:ycm_min_num_of_chars_for_completion = 4
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_enable_diagnostic_highlighting = 0
+
 " Don't show YCM's preview window [ I find it really annoying ]
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+
 " vim:ft=vim
