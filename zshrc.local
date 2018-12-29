@@ -17,7 +17,11 @@ if ! env | grep -q '^PS1='; then
   PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg[green]%}%c%{$reset_color%} %# '
 fi
 
+# On macos, use brew's vim
+if [ "$(uname 2> /dev/null)" != "Darwin" ]; then
 alias vim="/usr/local/Cellar/vim/8.0.1750/bin/vim"
+fi
+
 alias tas="tmux -2 attach-session -t"
 alias rs="bin/rails"
 alias br="bin/rake"
