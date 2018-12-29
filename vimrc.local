@@ -1,4 +1,3 @@
-" set termguicolors
 set encoding=utf-8
 set tags=./tags,tags,./.git/tags;$HOME
 set clipboard=unnamed
@@ -7,10 +6,10 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set autoread
 set noeb vb t_vb=
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
-hi StatusLine ctermbg=29 ctermfg=white
-let g:airline_theme='solarized'
+highlight ColorColumn ctermbg=0 guibg=Pink
 
 " Cursor Styles
 let &t_SI.="\e[5 q"
@@ -20,27 +19,15 @@ let &t_EI.="\e[1 q"
 " Gui vs Terminal
 if has("gui_running")
   set vb t_vb=
-  set linespace=3
-  set guifont=SF\ Mono\ Light:h13
+  set linespace=2
+  set guifont=Monaco:h12
   set background=light
-  colorscheme solarized
-  " let g:one_allow_italics = 1
-  highlight ColorColumn ctermbg=0 guibg=DarkGray
 else
-  set background=light
-  colorscheme solarized
-  " let g:one_allow_italics = 1
-  " highlight ColorColumn ctermbg=0 guibg=DarkGray
+  set termguicolors
+  set background=dark
+  colorscheme grb256
+  set nocursorline
 endif
-
-" Lets try nerdtree again
-" autocmd vimenter * NERDTree
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" map <leader>e :NERDTreeFind<cr>
-" map <C-n> :NERDTreeToggle<CR>
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -163,9 +150,6 @@ let g:ale_fixers = {
 " leader space
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
-map <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
-map <leader>sc :sp db/schema.rb<cr>
-map <leader>n :tabe .project_notes<cr>
 
 " Start autocompletion after 4 chars
 let g:ycm_min_num_of_chars_for_completion = 4
