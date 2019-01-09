@@ -9,7 +9,6 @@ set smartcase
 set autoread
 set noeb vb t_vb=
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
-highlight ColorColumn ctermbg=0 guibg=Pink
 
 " Cursor Styles
 let &t_SI.="\e[5 q"
@@ -18,16 +17,21 @@ let &t_EI.="\e[1 q"
 
 " Gui vs Terminal
 if has("gui_running")
-  set vb t_vb=
   set linespace=2
-  set guifont=Monaco:h12
-  set background=light
 else
   set termguicolors
-  set background=dark
-  colorscheme grb256
-  set nocursorline
 endif
+
+set background=dark
+let g:dracula_italic = 0
+colorscheme dracula
+let g:lightline = {
+      \  'colorscheme': 'Dracula',
+      \   'inactive': {
+      \     'left': [['filename'], ['modified']],
+      \     'right': [['lineinfo'], ['percent']]
+      \   }
+      \ }
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -39,10 +43,13 @@ nnoremap <leader>= :wincmd =<cr>
 " simplify netrw
 let g:netrw_banner = 0
 
-" Display relative line numbers 
+" display relative line numbers
 set number
 set numberwidth=5
 set relativenumber
+
+set cursorline
+set cursorcolumn
 
 " enable indent folding
 set foldenable
@@ -58,7 +65,7 @@ if has("autocmd")
 endif
 
 " Remove whitespace at end of lines
-autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php :%s/\s\+$//e
+autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php,*.coffee :%s/\s\+$//e
 
 " use C-Space to Esc any mode
 nnoremap <C-Space> <Esc>:noh<CR>
@@ -93,26 +100,8 @@ nmap k gk
 nnoremap 0 ^
 nnoremap ^ 0
 
-" ctrl+r to replace highlighted text in entire document
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-
 " CtrlP fuzzy buffer
 nnoremap ; :CtrlPBuffer<CR>
-
-" setup CtrlSF for searching in project
-nnoremap \ :CtrlSF<SPACE>
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-let g:ctrlsf_mapping = {
-    \ "next": "n",
-    \ "prev": "N",
-    \ }
 
 " s toggles folds, S toggles folds recursively
 nnoremap s za
@@ -127,7 +116,7 @@ imap <C-Return> <CR><CR><C-o>k<Tab>
 
 let g:test#strategy = "dispatch"
 
-" Lint erb correctly
+" lint erb correctly
 call ale#linter#Define('eruby', {
  \   'name': 'erubylint',
  \   'executable': 'erb',
@@ -143,21 +132,11 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'jsx': ['eslint']
 \}
-" let g:ale_javascript_eslint_use_global = 1
 
-" let g:ctrlp_match_window = 'top,min:1,max:5,results:10'
+let g:EasyGrepCommand = 1
 
 " leader space
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
-
-" Start autocompletion after 4 chars
-let g:ycm_min_num_of_chars_for_completion = 4
-let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_enable_diagnostic_highlighting = 0
-
-" Don't show YCM's preview window [ I find it really annoying ]
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
 
 " vim:ft=vim
