@@ -19,19 +19,21 @@ let &t_EI.="\e[1 q"
 if has("gui_running")
   set linespace=2
 else
-  set termguicolors
+  " set termguicolors
+  let g:lightline = {
+        \  'colorscheme': 'default' }
 endif
 
-set background=dark
-let g:dracula_italic = 0
-colorscheme dracula
-let g:lightline = {
-      \  'colorscheme': 'Dracula',
-      \   'inactive': {
-      \     'left': [['filename'], ['modified']],
-      \     'right': [['lineinfo'], ['percent']]
-      \   }
-      \ }
+" set background=dark
+" let g:dracula_italic = 0
+" colorscheme dracula
+" let g:lightline = {
+"       \  'colorscheme': 'Dracula',
+"       \   'inactive': {
+"       \     'left': [['filename'], ['modified']],
+"       \     'right': [['lineinfo'], ['percent']]
+"       \   }
+"       \ }
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -48,8 +50,8 @@ set number
 set numberwidth=5
 set relativenumber
 
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 " enable indent folding
 set foldenable
