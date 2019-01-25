@@ -20,6 +20,8 @@ if has("gui_running")
   set linespace=2
 else
   " set termguicolors
+  syntax on
+  hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
   let g:lightline = {
         \  'colorscheme': 'default' }
 endif
@@ -136,6 +138,14 @@ let g:ale_fixers = {
 \}
 
 let g:EasyGrepCommand = 1
+
+" Quick search file for highlighred word
+vnoremap // y/<C-R>"<CR>
+
+" YouCompleteMe
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+set completeopt=menu,preview
 
 " leader space
 nnoremap <leader>got <c-w>gf

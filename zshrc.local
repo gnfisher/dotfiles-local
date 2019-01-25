@@ -24,8 +24,8 @@ fi
 
 alias tas="tmux -2 attach-session -t"
 alias rs="bin/rails"
-alias br="bin/rake"
-alias s="bin/rspec"
+alias ra="bin/rake"
+alias sp="bin/rspec"
 alias gbc="git branch | cat"
 alias vimrc="vim ~/dotfiles-local/vimrc.local"
-alias migrate="bin/rake db:migrate db:rollback && bin/rake db:migrate db:test:prepare"
+alias migrate="bin/rails db:migrate db:rollback && bin/rails db:migrate db:test:prepare"
