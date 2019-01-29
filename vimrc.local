@@ -19,23 +19,10 @@ let &t_EI.="\e[1 q"
 if has("gui_running")
   set linespace=2
 else
-  " set termguicolors
   syntax on
   hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
-  let g:lightline = {
-        \  'colorscheme': 'default' }
+  hi StatusLine ctermbg=16 ctermfg=251
 endif
-
-" set background=dark
-" let g:dracula_italic = 0
-" colorscheme dracula
-" let g:lightline = {
-"       \  'colorscheme': 'Dracula',
-"       \   'inactive': {
-"       \     'left': [['filename'], ['modified']],
-"       \     'right': [['lineinfo'], ['percent']]
-"       \   }
-"       \ }
 
 " automatically rebalance windows on resize
 autocmd VimResized * :wincmd =
@@ -148,6 +135,8 @@ set wildmode=longest,list:longest
 set completeopt=menu,preview
 
 " leader space
+" close all cut current buffer
+nnoremap <leader>bo :BufOnly<cr>
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
 
