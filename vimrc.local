@@ -9,6 +9,7 @@ set smartcase
 set autoread
 set noeb vb t_vb=
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+hi StatusLine ctermbg=16 ctermfg=251
 
 " Cursor Styles
 let &t_SI.="\e[5 q"
@@ -20,8 +21,23 @@ if has("gui_running")
   set linespace=2
 else
   syntax on
-  hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
-  hi StatusLine ctermbg=16 ctermfg=251
+
+  " colorscheme jellybeans
+  " colorscheme grb256
+
+  " For Dracula
+  " set termguicolors
+  " let g:dracula_italic = 0
+  " set background=dark
+  " colorscheme dracula
+
+  " For light theme
+  " set background=light
+  " hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
+
+  " For dark theme
+  set background=dark
+  hi Visual cterm=NONE ctermbg=237 ctermfg=NONE guibg=Grey100
 endif
 
 " automatically rebalance windows on resize
