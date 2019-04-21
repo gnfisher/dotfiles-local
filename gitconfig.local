@@ -1,8 +1,9 @@
 [user]
   name = Greg Fisher
-  email = me@gnfisher.com
+  email = gnfisher@thoughtbot.com
 [alias]
   l = log --pretty=colored
+  pl = log --oneline --decorate --graph --all -30
   unstage = reset 
   com = checkout
   co = checkout
