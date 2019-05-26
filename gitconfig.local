@@ -10,6 +10,7 @@
   cob = checkout -b
   ffm = merge --ff-only
   ri = rebase -i
+  dlc = diff HEAD^1..HEAD
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [merge]

@@ -23,19 +23,22 @@ else
   syntax on
 
   " colorscheme jellybeans
-  " colorscheme grb256
+  colorscheme grb256
 
   " For Dracula
   " set termguicolors
   " let g:dracula_italic = 0
-  " set background=dark
+  set background=dark
   " colorscheme dracula
-
+  "
   " For light theme
-  set background=light
-  hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
-
+  " set background=light
+  " hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
+  "
   " For dark theme
+  " set termguicolors
+  " colorscheme molokai 
+  " colorscheme gruvbox
   " set background=dark
   " hi Visual cterm=NONE ctermbg=237 ctermfg=NONE guibg=Grey100
 endif
@@ -109,6 +112,11 @@ nnoremap ^ 0
 
 " CtrlP fuzzy buffer
 nnoremap ; :CtrlPBuffer<CR>
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " s toggles folds, S toggles folds recursively
 nnoremap s za
@@ -121,7 +129,7 @@ nnoremap <leader>uf zR<cr>
 " autoindent new lines with C-Return
 imap <C-Return> <CR><CR><C-o>k<Tab>
 
-let g:test#strategy = "dispatch"
+let g:test#strategy = "vtr"
 let g:test#javascript#jest#options = '--reporters jest-vim-reporter'
 
 " lint erb correctly
@@ -168,11 +176,15 @@ vnoremap // y/<C-R>"<CR>
 set complete=.,b,u,]
 set wildmode=longest,list:longest
 set completeopt=menu,preview
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
 
 " leader space
 " close all cut current buffer
 nnoremap <leader>bo :BufOnly<cr>
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
+nnoremap <leader>` :vsp ~/Writing/scratch.md<cr>
 
 " vim:ft=vim
