@@ -24,21 +24,26 @@ else
 
   " colorscheme jellybeans
   colorscheme grb256
+  set background=dark
 
   " For Dracula
   " set termguicolors
   " let g:dracula_italic = 0
-  set background=dark
+  " set background=dark
   " colorscheme dracula
   "
   " For light theme
   " set background=light
   " hi Visual cterm=NONE ctermbg=255 ctermfg=NONE guibg=Grey40
   "
+  " colorscheme solarized
+  " set background=light
+  "
   " For dark theme
   " set termguicolors
   " colorscheme molokai 
   " colorscheme gruvbox
+  " set background=light
   " set background=dark
   " hi Visual cterm=NONE ctermbg=237 ctermfg=NONE guibg=Grey100
 endif
@@ -56,7 +61,7 @@ let g:netrw_banner = 0
 " display relative line numbers
 set number
 set numberwidth=5
-set relativenumber
+" set relativenumber
 
 " set cursorline
 " set cursorcolumn
@@ -111,12 +116,12 @@ nnoremap 0 ^
 nnoremap ^ 0
 
 " CtrlP fuzzy buffer
-nnoremap ; :CtrlPBuffer<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+" nnoremap ; :CtrlPBuffer<CR>
+" let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
 
 " s toggles folds, S toggles folds recursively
 nnoremap s za
@@ -129,7 +134,13 @@ nnoremap <leader>uf zR<cr>
 " autoindent new lines with C-Return
 imap <C-Return> <CR><CR><C-o>k<Tab>
 
-let g:test#strategy = "vtr"
+let test#strategy = 'vtr'
+" let test#strategy = {
+"       \ 'nearest': 'dispatch',
+"       \ 'file':    'dispatch',
+"       \ 'last':    'dispatch',
+"       \ 'suite':   'vtr',
+"       \}
 let g:test#javascript#jest#options = '--reporters jest-vim-reporter'
 
 " lint erb correctly
@@ -185,6 +196,39 @@ let g:ycm_semantic_triggers = {
 nnoremap <leader>bo :BufOnly<cr>
 nnoremap <leader>got <c-w>gf
 nnoremap <leader>c :cclose<cr>
-nnoremap <leader>` :vsp ~/Writing/scratch.md<cr>
+nnoremap <leader>` :vsp ~/Notes/scratch.md<cr>
+
+" Maps ctrl+p to open fuzzy search via FZF
+nnoremap <c-p> :Files<cr>
+nnoremap ; :Buffers<CR>
+
+" show hidden files and hide gitignored files
+" let $FZF_DEFAULT_COMMAND = 'ag --files --hidden'
+
+nnoremap <leader>ga :Files app/<cr>
+nnoremap <leader>gm :Files app/models/<cr>
+nnoremap <leader>gv :Files app/views/<cr>
+nnoremap <leader>gc :Files app/controllers/<cr>
+nnoremap <leader>gy :Files app/assets/stylesheets/<cr>
+nnoremap <leader>gj :Files app/assets/javascripts/<cr>
+nnoremap <leader>gs :Files spec/<cr>
+
+nnoremap <leader>ap :VtrAttachToPane 2<cr>
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Bat: https://github.com/sharkdp/bat
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
 
 " vim:ft=vim
