@@ -5,6 +5,8 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+. ~/.asdf/plugins/java/asdf-java-wrapper.zsh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # export to path
@@ -25,7 +27,6 @@ if [ "$(uname 2> /dev/null)" != "Darwin" ]; then
 alias vim="/usr/local/Cellar/vim/8.0.1750/bin/vim"
 fi
 
-. ~/.asdf/plugins/java/asdf-java-wrapper.zsh
 
 alias tas="tmux -2 attach-session -t"
 alias rs="bin/rails"
