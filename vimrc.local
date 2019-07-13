@@ -1,6 +1,6 @@
 let g:netrw_banner = 0
 
-syntax on
+syntax enable
 set encoding=utf-8
 set tags=./tags,tags,./.git/tags;$HOME
 set clipboard=unnamed
@@ -125,4 +125,5 @@ command! -bang -nargs=* Rg
 "   \ 'header':  ['fg', 'Comment'] }
 
 set background=light
+colorscheme solarized
 " vim:ft=vim
