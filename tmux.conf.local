@@ -6,8 +6,6 @@ set-option -g status-keys "emacs"
 
 bind \ split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
-unbind '"'
-unbind %
 
 bind -n S-Left resize-pane -L 2
 bind -n S-Right resize-pane -R 2
@@ -30,11 +28,10 @@ bind-key C-j choose-tree
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
-
-# bind P paste-buffer
-# bind-key -t vi-copy 'v' begin-selection
-# bind-key -t vi-copy 'y' copy-selection
-# bind-key -t vi-copy 'r' rectangle-toggle
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+unbind -T copy-mode-vi Enter
+bind-key -T copy-mode-vi Enter send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
@@ -54,4 +51,4 @@ set -g status-left '[#S] '
 set -g status-right "#{?pane_synchronized,--SYNCED--,} #(is-online) #(battery -t -g black) #(date '+%a, %b %d - %I:%M') "
 
 # Fuzzy find for switching sessions
-# bind-key s split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+# bind-key w split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"

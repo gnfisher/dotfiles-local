@@ -13,5 +13,3 @@
   dlc = diff HEAD^1..HEAD
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
-[merge]
-
