@@ -32,9 +32,9 @@ set sidescrolloff=5
 
 " statusline
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-hi StatusLine ctermbg=16 ctermfg=251
-hi TabLine ctermbg=250 ctermfg=16
-hi TabLineFill ctermbg=250 ctermfg=250
+" hi StatusLine ctermbg=16 ctermfg=251
+" hi TabLine ctermbg=250 ctermfg=16
+" hi TabLineFill ctermbg=250 ctermfg=250
 
 
 if has("autocmd")
@@ -101,6 +101,8 @@ nnoremap <leader>gc :Files app/controllers/<cr>
 nnoremap <leader>gy :Files app/assets/stylesheets/<cr>
 nnoremap <leader>gj :Files app/assets/javascripts/<cr>
 nnoremap <leader>gs :Files spec/<cr>
+
+" ripgrep
 nnoremap \ :Rg<space>
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -109,21 +111,9 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
 \ <bang>0)
 
-" let g:fzf_colors =
-" \ { 'fg':      ['fg', 'Normal'],
-"   \ 'bg':      ['bg', 'Normal'],
-"   \ 'hl':      ['fg', 'Comment'],
-"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"   \ 'hl+':     ['fg', 'Statement'],
-"   \ 'info':    ['fg', 'PreProc'],
-"   \ 'border':  ['fg', 'Ignore'],
-"   \ 'prompt':  ['fg', 'Conditional'],
-"   \ 'pointer': ['fg', 'Exception'],
-"   \ 'marker':  ['fg', 'Keyword'],
-"   \ 'spinner': ['fg', 'Label'],
-"   \ 'header':  ['fg', 'Comment'] }
-
 set background=light
-colorscheme solarized
-" vim:ft=vim
+
+" pastel dark colors
+" set background=dark
+" :set termguicolors
+" color grb24bit
