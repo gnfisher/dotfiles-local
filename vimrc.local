@@ -111,9 +111,6 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
 \ <bang>0)
 
-set background=light
-
-" pastel dark colors
-" set background=dark
-" :set termguicolors
-" color grb24bit
+set background=dark
+set termguicolors
+colorscheme jellybeans
