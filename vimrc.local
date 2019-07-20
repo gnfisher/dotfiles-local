@@ -32,27 +32,18 @@ set sidescrolloff=5
 
 " statusline
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-" hi StatusLine ctermbg=16 ctermfg=251
-" hi TabLine ctermbg=250 ctermfg=16
-" hi TabLineFill ctermbg=250 ctermfg=250
-
 
 if has("autocmd")
   filetype indent plugin on
+  " json
+  autocmd! FileType json set sw=2 sts=2 expandtab
+
   " elm indentation
   autocmd! FileType elm set sw=4 sts=4 expandtab autoindent smartindent nocindent
 
   " Remove whitespace at end of lines
   autocmd BufWritePre *.erb,*.scss,*.rb,*.js,*.c,*.py,*.php,*.coffee :%s/\s\+$//e
 endif
-
-" automatically rebalance windows on resize
-autocmd VimResized * :wincmd =
-autocmd! FileType json set sw=2 sts=2 expandtab
-
-" zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :wincmd =<cr>
 
 " Enable matchit for better navigating
 runtime macros/matchit.vim
