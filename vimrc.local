@@ -84,7 +84,7 @@ call ale#linter#Define('eruby', {
 
 " fzf
 nnoremap <c-p> :Files<cr>
-nnoremap <c-o> :Buffers<CR>
+nnoremap <leader>gp :Buffers<CR>
 nnoremap <leader>ga :Files app/<cr>
 nnoremap <leader>gm :Files app/models/<cr>
 nnoremap <leader>gv :Files app/views/<cr>
@@ -102,6 +102,11 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
 \ <bang>0)
 
+nnoremap <leader>sub :%s///g<left><left>
+vnoremap <leader>sub :s///g<left><left>
+
 set background=dark
-set termguicolors
 colorscheme jellybeans
+" highlight ColorColumn ctermbg=238
+" hi Comment ctermfg=246
+" hi SpellBad ctermbg=52
