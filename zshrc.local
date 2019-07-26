@@ -10,12 +10,15 @@ zstyle :compinstall filename '/Users/greg/.zshrc'
 autoload -Uz compinit
 compinit
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+for zsh_source in $HOME/.zsh/configs/*.zsh; do
+  source $zsh_source
+done
 
-# export to path
 export PATH=/usr/local/bin:$PATH
 export PATH=~/.npm-global/bin:$PATH
 export PATH="$PATH:/usr/lib"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Allow exported PS1 variable to override default prompt.
 if ! env | grep -q '^PS1='; then
@@ -38,3 +41,5 @@ alias sp="bin/rspec"
 alias gbc="git branch | cat"
 alias vimrc="vim ~/dotfiles-local/vimrc.local"
 alias migrate="bin/rails db:migrate db:rollback && bin/rails db:migrate db:test:prepare"
+
+ensure_tmux_is_running
