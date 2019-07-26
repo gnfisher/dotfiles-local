@@ -30,10 +30,11 @@ if [ "$(uname 2> /dev/null)" != "Darwin" ]; then
 fi
 
 alias tas="tmux -2 attach-session -t"
+alias b="bundle"
+alias be="bundle execute"
 alias rs="bin/rails"
 alias ra="bin/rake"
 alias sp="bin/rspec"
 alias gbc="git branch | cat"
 alias vimrc="vim ~/dotfiles-local/vimrc.local"
 alias migrate="bin/rails db:migrate db:rollback && bin/rails db:migrate db:test:prepare"
-alias gh="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"

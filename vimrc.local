@@ -1,6 +1,5 @@
-let g:netrw_banner = 0
-
 syntax enable
+let g:netrw_banner = 0
 set encoding=utf-8
 set tags=./tags,tags,./.git/tags;$HOME
 set clipboard=unnamed
@@ -13,12 +12,10 @@ set noeb vb t_vb=
 set number
 set numberwidth=5
 set diffopt=vertical
-set signcolumn=no
 :set updatetime=1000
 set complete=.,w,b,u,t,i
 :set completeopt=menu,preview
 set diffopt=vertical
-set signcolumn=no
 :set updatetime=1000
 set complete=.,w,b,u,t,i
 :set completeopt=menu,preview
@@ -81,8 +78,12 @@ call ale#linter#Define('eruby', {
  \   'command': "ruby -rerb -e \"puts ERB.new(File.read(%t, encoding: 'BINARY').gsub('<%=','<%'), nil, '-').src\" | ruby -c",
  \   'callback': 'ale#handlers#ruby#HandleSyntaxErrors',
  \})
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_set_highlights = 0
 
 " fzf
+let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --nocolor --hidden -g ""'
 nnoremap <c-p> :Files<cr>
 nnoremap <leader>gp :Buffers<CR>
 nnoremap <leader>ga :Files app/<cr>
@@ -106,7 +107,6 @@ nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
 
 set background=dark
-colorscheme jellybeans
-" highlight ColorColumn ctermbg=238
-" hi Comment ctermfg=246
-" hi SpellBad ctermbg=52
+highlight ColorColumn ctermbg=238
+hi Comment ctermfg=246
+hi SpellBad ctermbg=52
