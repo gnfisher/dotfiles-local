@@ -66,7 +66,9 @@ nmap j gj
 nmap k gk
 
 " User VTR for vim-test
-nnoremap <leader>ap :VtrAttachToPane 2<cr>
+let g:VtrUseVtrMaps = 1
+nnoremap <leader>rar :VtrReattachRunner<cr>
+nnoremap <leader>rap :VtrAttachToPane 2<cr>
 let test#strategy = 'vtr'
 let g:test#javascript#jest#options = '--reporters jest-vim-reporter'
 
@@ -83,8 +85,10 @@ let g:ale_sign_warning = '--'
 let g:ale_set_highlights = 0
 
 " fzf
+nnoremap <C-p> :Files<CR>
 nnoremap <leader>gp :Files<cr>
 nnoremap <leader>gb :Buffers<CR>
+nnoremap <leader>gt :Tag<cr>
 nnoremap <leader>ga :Files app/<cr>
 nnoremap <leader>gm :Files app/models/<cr>
 nnoremap <leader>gv :Files app/views/<cr>
@@ -105,7 +109,10 @@ command! -bang -nargs=* Rg
 nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
 
-colorscheme grb24bit
-highlight ColorColumn ctermbg=238
-hi Comment ctermfg=246
-hi SpellBad ctermbg=52
+set background=light
+" set background=dark
+" colorscheme grb24bit
+" highlight ColorColumn ctermbg=233
+" highlight Comment ctermfg=246
+" highlight SpellBad ctermbg=52
+" highlight Visual ctermfg=233 ctermbg=249
