@@ -108,8 +108,11 @@ command! -bang -nargs=* Rg
 
 nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
+" break long arguments onto separate lines
+vnoremap <leader>j :s/\((\zs\\|,\ *\zs\\|)\)/\r&/g<CR><Bar>:'[,']normal ==<CR>
 
 set background=light
+" colorscheme solarized
 " set background=dark
 " colorscheme grb24bit
 " highlight ColorColumn ctermbg=233
