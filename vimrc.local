@@ -88,7 +88,8 @@ let g:ale_set_highlights = 0
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>gp :Files<cr>
 nnoremap <leader>gb :Buffers<CR>
-nnoremap <leader>gt :Tag<cr>
+nnoremap <C-t> :Tag<cr>
+nnoremap <leader>gbt :BTag<cr>
 nnoremap <leader>ga :Files app/<cr>
 nnoremap <leader>gm :Files app/models/<cr>
 nnoremap <leader>gv :Files app/views/<cr>
@@ -96,6 +97,9 @@ nnoremap <leader>gc :Files app/controllers/<cr>
 nnoremap <leader>gy :Files app/assets/stylesheets/<cr>
 nnoremap <leader>gj :Files app/assets/javascripts/<cr>
 nnoremap <leader>gs :Files spec/<cr>
+
+nnoremap <leader>gt :call fzf#vim#tags(expand('<cword>'))<cr>
+
 
 " ripgrep
 nnoremap \ :Rg<space>
