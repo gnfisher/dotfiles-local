@@ -88,8 +88,8 @@ let g:ale_set_highlights = 0
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>gp :Files<cr>
 nnoremap <leader>gb :Buffers<CR>
-nnoremap <C-t> :Tag<cr>
-nnoremap <leader>gbt :BTag<cr>
+nnoremap <leader>gt :Tag<cr>
+nnoremap <leader>go :BTag<cr>
 nnoremap <leader>ga :Files app/<cr>
 nnoremap <leader>gm :Files app/models/<cr>
 nnoremap <leader>gv :Files app/views/<cr>
@@ -98,7 +98,7 @@ nnoremap <leader>gy :Files app/assets/stylesheets/<cr>
 nnoremap <leader>gj :Files app/assets/javascripts/<cr>
 nnoremap <leader>gs :Files spec/<cr>
 
-nnoremap <leader>gt :call fzf#vim#tags(expand('<cword>'))<cr>
+" nnoremap <leader>gw :call fzf#vim#tags(expand('<cword>'))<cr>
 
 
 " ripgrep
@@ -106,8 +106,8 @@ nnoremap \ :Rg<space>
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:40%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:40%:hidden', '?'),
 \ <bang>0)
 
 nnoremap <leader>sub :%s///g<left><left>
