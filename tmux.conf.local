@@ -45,8 +45,8 @@ bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 
 # status bar
 set -g status-left-length 40
-set -g status-bg colour2
-set -g status-fg colour0
+set -g status-bg "#ffffff"
+set -g status-fg "#00c5c7"
 set -g status-left '[#S] '
 set -g status-right "#{?pane_synchronized,--SYNCED--,} #(is-online) #(battery -t -g black) #(date '+%a, %b %d - %I:%M') "
 

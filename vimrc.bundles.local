@@ -1,4 +1,6 @@
 UnPlug 'ctrlp.vim'
+UnPlug 'vim-endwise'
+UnPlug 'ale'
 Plug 'ElmCast/elm-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
@@ -16,3 +18,5 @@ Plug 'Quramy/tsuquyomi'
 Plug 'nanotech/jellybeans.vim'
 Plug 'Khaledgarbaya/night-owl-vim-theme'
 Plug 'altercation/vim-colors-solarized'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'derekwyatt/vim-scala'

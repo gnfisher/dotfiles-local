@@ -18,3 +18,5 @@ scratch.md
 gf_notes.md
 /bundle/**/*
 elm-stuff
+*.log
+.env

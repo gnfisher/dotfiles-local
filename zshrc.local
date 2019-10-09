@@ -20,7 +20,7 @@ export PATH="$PATH:/usr/lib"
 export PATH="$PATH:~/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 # Allow exported PS1 variable to override default prompt.
 if ! env | grep -q '^PS1='; then
